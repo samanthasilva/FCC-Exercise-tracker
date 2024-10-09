@@ -1,59 +1,304 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
 * {
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+  height: 100%;
+  background:#f8f6f6f3;
 }
 
 body {
-  font-family:sans-serif;
-  margin: 25px;
-  color: #222;
-  background-color: #f5f5f5;
+  font-family: montserrat, arial, verdana;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 }
 
-h1 {
-  font-weight: bold;
-  
-}
-
-p {
-  max-width: 900px;
-}
-
-form {
-  margin-bottom: 25px;
-  padding: 15px;
-  background-color: #87D37C;
-  display: inline-block;
+#msform {
   width: 100%;
-  max-width: 340px;
-  border-radius: 5px;
+  max-width: 1200px;
+  min-width: 1000px;
+  text-align: center;
+  position: relative;
+  margin: 30px;
 }
 
-input {
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 6px;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    padding: 20px 30px;
+    box-sizing: border-box;
+    margin: 0 4% 0 2%;
+    position: relative;
+    margin-top: 35px !important;
+}
+
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+#msform input, #msform textarea {
+    padding: 15px;
+    border: 0px solid #ffffff;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    width: 90%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 13px;
+    border-bottom: 1px solid #ee0979;
+}
+
+
+#msform input:focus, #msform textarea:focus {
+    box-shadow: none !important;
+    border: 1px solid #ee0979;
+    outline-width: 0;
+    transition: all 0.5s ease-in;
+}
+
+#msform .action-button {
+    width: 100px;
+    background: #ee0979;
+    font-weight: bold;
+    color: #fff;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #ee0979;
+}
+
+#msform .action-button-previous {
+    width: 100px;
+    background: #f3f3f3;
+    font-weight: bold;
+    color: #ee0979;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button-previous:hover, #msform .action-button-previous:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #f3f3f3;
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    counter-reset: step;
+    width: 70%;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    margin: 0 10%;
+
+}
+
+
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  counter-reset: step;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+}
+
+#progressbar li {
+  text-align: center;
+  width: 33.33%;
+  position: relative;
+  font-size: 18px;
+}
+
+#progressbar li::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border: 2px solid white;
   display: block;
-  margin-bottom: 10px;
-  padding: 5px;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: white;
+  color: #ee0979;
+}
+
+#progressbar li.active::before {
+  background-color: #ee0979 ; /* Cor do passo ativo */
+  color: white;
+}
+
+#progressbar li::after {
+  content: '';
+  position: absolute;
   width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-  font-size: 16px;
+  height: 2px;
+  background: #fff;
+  top: 14px;
+  left: -50%;
+  z-index: -1;
 }
 
-input[type=submit] {
-  font-size: 16px;
-  border-radius: 3px;
-  background-color: #E4F1FE;
-  border: 1px solid grey;
-  box-shadow: 2px 2px #999;
-  cursor: pointer;
+#progressbar li:first-child::after {
+  content: none;
 }
 
-input[type=submit]:hover {
-  background-color: #FFFEC4;
+#progressbar li.active + li::after {
+  background: #ee0979; 
 }
 
-code {
+#progressbar li span {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: transparent;
+}
+
+#progressbar li {
+    list-style-type: none;
+    color: #ee0979;
+    text-transform: uppercase;
+    font-size: 10px;
+    width: 33.33%;
+    float: left;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 24px;
+    height: 24px;
+    line-height: 26px;
+    display: block;
+    font-size: 12px;
+    color: #333;
+    background: white;
+    border-radius: 25px;
+    margin: 0 auto 10px auto;
+}
+
+
+#code {
   font-family: monospace;
-  font-size: 1.2em;
-  background-color: #FFFEC4;
+  font-size: 0.8em;
   padding: 2px;
+ text-align: left
+}
+
+/* Log container style */
+.log-container {
+  background-color: #fff;
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.action-button {
+  width: 120px;
+  background-color: #ee0979;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 25px;
+  margin-top: 20px;
+}
+
+.action-button:hover {
+  background-color: #ee0979;
+}
+
+.previous {
+  background-color: #C5C5F1;
+}
+
+.previous:hover {
+  background-color: #9d9df2;
+}
+
+h2.fs-title {
+  font-size: 18px;
+  color: #2C3E50;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-family: montserrat, arial, verdana;
+}
+
+h3.fs-subtitle {
+  font-size: 14px;
+  font-weight: normal;
+  color: #666;
+  margin-bottom: 30px;
+  font-family: montserrat, arial, verdana;
+
+}
+
+footer {
+  font-family: montserrat, arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+  border-top: 2px solid #ee0979;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); 
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  position: fixed;
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  z-index: 10;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  z-index: 100; 
+  list-style-type: none;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.cute-footer p {
+  margin: 5px 0;
+}
+
+.cute-footer a {
+  color: #ee0979;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cute-footer .heart-link {
+  color: #ee0979; 
+  font-size: 18px;
+  text-decoration: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+.cute-footer .heart-link:hover {
+  transform: scale(1.2); 
 }

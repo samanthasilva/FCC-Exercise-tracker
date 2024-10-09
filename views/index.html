@@ -1,46 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
-    <title>Exercise Tracker | freeCodeCamp</title>
-    <link rel="shortcut icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon.ico"  type="image/x-icon" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rastreador de Exercícios</title>
+    <link rel="stylesheet" href="/public/style.css" />
   </head>
-
   <body>
     <div class="container">
-      <h1>Exercise tracker</h1>
-      <form action="/api/users" method="post">
-        <h2>Create a New User</h2>
-        <p><code>POST /api/users</code></p>
-        <input id="uname" type="text" name="username" placeholder="username" />
-        <input type="submit" value="Submit" />
+      <form id="msform">
+        <ul id="progressbar">
+          <li class="active">Criar Usuário</li>
+          <li>Adicionar Exercício</li>
+          <li>Ver Log de Exercícios</li>
+        </ul>
+
+        <fieldset>
+          <h2 class="fs-title">Criar um Novo Usuário</h2>
+          <h3 class="fs-subtitle">Passo 1: Insira seus dados</h3>
+          <input id="uname" type="email" name="username" placeholder="Digite seu e-mail" required />
+          <input type="button" name="next" class="next action-button" value="Próximo" />
+        </fieldset>
+
+        <fieldset>
+          <h2 class="fs-title">Adicionar Exercícios</h2>
+          <h3 class="fs-subtitle">Passo 2: Insira os detalhes do exercício</h3>
+          <input id="uid" type="text" name="user_id" hidden />
+          <input id="desc" type="text" name="description" placeholder="Descrição*" required />
+          <input id="dur" type="number" name="duration" placeholder="Duração* (minutos)" required />
+          <input id="date" type="date" name="date" />
+          <input type="button" name="previous" class="previous action-button-previous" value="Anterior" />
+          <input type="submit" name="submit" class="submit action-button" value="Enviar" />
+        </fieldset>
+
+        <fieldset>
+          <h2 class="fs-title">Log de Exercícios do Usuário</h2>
+          <h3 class="fs-subtitle">Passo 3: Ver log de exercícios</h3>
+          <div id="exercise-log" class="log-container">
+            <div class="log-entry">
+              <p class="log-title">Log de Exercícios:</p>
+              <div class="log-item">
+                <span class="log-label">Descrição:</span> <span id="log-description">Carregando...</span>
+              </div>
+              <div class="log-item">
+                <span class="log-label">Duração:</span> <span id="log-duration">Carregando...</span>
+              </div>
+              <div class="log-item">
+                <span class="log-label">Data:</span> <span id="log-date">Carregando...</span>
+              </div>
+            </div>
+          </div>
+          <input type="button" name="previous" class="previous action-button-previous" value="Anterior" />
+          <input type="button" id="restart" class="action-button" value="Reiniciar" />
+        </fieldset>
       </form>
-      <form action="/api/users/:_id/exercises" id="exercise-form" method="post">
-        <h2>Add exercises</h2>
-        <p><code>POST /api/users/:_id/exercises</code></p>
-        <input id="uid" type="text" name=":_id" placeholder=":_id" />
-        <input id="desc" type="text" name="description" placeholder="description*" />
-        <input id="dur" type="text" name="duration" placeholder="duration* (mins.)" />
-        <input id="date" type="text" name="date" placeholder="date (yyyy-mm-dd)" />
-        <input type="submit" value="Submit" />
-      </form>
-      <p>
-        <strong>GET user's exercise log: </strong>
-        <code>GET /api/users/:_id/logs?[from][&amp;to][&amp;limit]</code>
-      </p>
-      <p><strong>[ ]</strong> = optional</p>
-      <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
     </div>
-    <script>
-      const exerciseForm = document.getElementById("exercise-form");
+    <script src="/public/index.js"></script>
 
-      exerciseForm.addEventListener("submit", () => {
-        const userId = document.getElementById("uid").value;
-        exerciseForm.action = `/api/users/${userId}/exercises`;
+    <footer class="cute-footer">
+      <p>
+        Desenvolvido 
+        <a href="https://github.com/samanthasilva/FCC-Exercise-tracker" target="_blank" class="heart-link">❤</a>
+        por Samantha Silva
+      </p>
+      </footer> 
 
-        exerciseForm.submit();
-      });
-    </script>
   </body>
 </html>
